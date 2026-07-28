@@ -260,9 +260,7 @@ function inRange(mmdd: number, start: number, end: number): boolean {
 export function getZodiacSign(month: number, day: number): ZodiacSign | null {
   const mmdd = toMmdd(month, day);
   return (
-    ZODIAC_SIGNS.find((s) =>
-      inRange(mmdd, toMmdd(s.start.month, s.start.day), toMmdd(s.end.month, s.end.day)),
-    ) ?? null
+    ZODIAC_SIGNS.find((s) => inRange(mmdd, toMmdd(s.start.month, s.start.day), toMmdd(s.end.month, s.end.day))) ?? null
   );
 }
 
@@ -341,20 +339,7 @@ export function parseDate(input: string): Date | null {
 }
 
 export function formatDateRange(sign: ZodiacSign): string {
-  const months = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-  ];
+  const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   const start = `${months[sign.start.month - 1]} ${sign.start.day}`;
   const end = `${months[sign.end.month - 1]} ${sign.end.day}`;
   return `${start} – ${end}`;

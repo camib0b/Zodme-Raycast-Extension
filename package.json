@@ -2,7 +2,7 @@
   "$schema": "https://www.raycast.com/schemas/extension.json",
   "name": "zodme",
   "title": "Zodme",
-  "description": "Look up a zodiac sign from a birthday",
+  "description": "Zodiac sign inquiry tool",
   "icon": "zodme-logo.png",
   "author": "camib0b",
   "platforms": [
@@ -17,6 +17,12 @@
       "name": "convert-birth-date-to-zodiac-sign",
       "title": "Get Zodiac Sign",
       "description": "Get the zodiac sign and a short archetype description for a date.",
+      "mode": "view"
+    },
+    {
+      "name": "browse-all-zodiac-signs",
+      "title": "Browse All Zodiac Signs",
+      "description": "Browse all 12 zodiac signs.",
       "mode": "view"
     }
   ],

@@ -32,9 +32,7 @@ export default function Command() {
     />
   );
 
-  const formattedDate = date
-    ? date.toLocaleDateString(undefined, { month: "short", day: "numeric" })
-    : undefined;
+  const formattedDate = date ? date.toLocaleDateString(undefined, { month: "short", day: "numeric" }) : undefined;
 
   return (
     <List

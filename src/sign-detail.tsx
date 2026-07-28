@@ -49,26 +49,14 @@ export function SignDetail({ sign }: { sign: ZodiacSign }) {
       markdown={buildMarkdown(sign)}
       metadata={
         <List.Item.Detail.Metadata>
-          <List.Item.Detail.Metadata.Label
-            title="Sign"
-            text={`${sign.symbol} ${sign.name}`}
-          />
-          <List.Item.Detail.Metadata.Label
-            title="Date Range"
-            text={formatDateRange(sign)}
-          />
+          <List.Item.Detail.Metadata.Label title="Sign" text={`${sign.symbol} ${sign.name}`} />
+          <List.Item.Detail.Metadata.Label title="Date Range" text={formatDateRange(sign)} />
           <List.Item.Detail.Metadata.Separator />
           <List.Item.Detail.Metadata.TagList title="Element">
-            <List.Item.Detail.Metadata.TagList.Item
-              text={sign.element}
-              color={elementColor(sign.element)}
-            />
+            <List.Item.Detail.Metadata.TagList.Item text={sign.element} color={elementColor(sign.element)} />
           </List.Item.Detail.Metadata.TagList>
           <List.Item.Detail.Metadata.Label title="Modality" text={sign.modality} />
-          <List.Item.Detail.Metadata.Label
-            title="Ruling Planet"
-            text={sign.rulingPlanet}
-          />
+          <List.Item.Detail.Metadata.Label title="Ruling Planet" text={sign.rulingPlanet} />
           <List.Item.Detail.Metadata.Separator />
           <List.Item.Detail.Metadata.TagList title="Best Matches">
             {sign.compatible.map((s) => (
@@ -77,11 +65,7 @@ export function SignDetail({ sign }: { sign: ZodiacSign }) {
           </List.Item.Detail.Metadata.TagList>
           <List.Item.Detail.Metadata.TagList title="More Challenging">
             {sign.challenging.map((s) => (
-              <List.Item.Detail.Metadata.TagList.Item
-                key={s}
-                text={s}
-                color={Color.SecondaryText}
-              />
+              <List.Item.Detail.Metadata.TagList.Item key={s} text={s} color={Color.SecondaryText} />
             ))}
           </List.Item.Detail.Metadata.TagList>
         </List.Item.Detail.Metadata>
@@ -93,22 +77,10 @@ export function SignDetail({ sign }: { sign: ZodiacSign }) {
 export function SignActions({ sign }: { sign: ZodiacSign }) {
   return (
     <ActionPanel>
-      <Action.CopyToClipboard
-        title="Copy Sign Name"
-        content={`${sign.symbol} ${sign.name}`}
-      />
-      <Action.CopyToClipboard
-        title="Copy Full Profile"
-        content={buildMarkdown(sign)}
-      />
-      <Action.CopyToClipboard
-        title="Copy Description"
-        content={sign.description}
-      />
-      <Action.CopyToClipboard
-        title="Copy Date Range"
-        content={formatDateRange(sign)}
-      />
+      <Action.CopyToClipboard title="Copy Sign Name" content={`${sign.symbol} ${sign.name}`} />
+      <Action.CopyToClipboard title="Copy Full Profile" content={buildMarkdown(sign)} />
+      <Action.CopyToClipboard title="Copy Description" content={sign.description} />
+      <Action.CopyToClipboard title="Copy Date Range" content={formatDateRange(sign)} />
     </ActionPanel>
   );
 }
