@@ -1,6 +1,7 @@
-import { ActionPanel, Action, Icon, List } from "@raycast/api";
+import { Icon, List } from "@raycast/api";
 import { useState, useMemo } from "react";
-import { getZodiacSign, parseDate } from "./utils";
+import { getZodiacSign, parseDate, formatDateRange } from "./utils";
+import { elementColor, SignDetail, SignActions } from "./sign-detail";
 
 export default function Command() {
   const [searchText, setSearchText] = useState("");
@@ -18,16 +19,23 @@ export default function Command() {
   }, [searchText]);
 
   const emptyView = isEmpty ? (
-    <List.EmptyView icon={Icon.Calendar} title="Enter a date" />
-  ) : (
     <List.EmptyView
       icon={Icon.Calendar}
+      title="Enter a birth date"
+      description="Try: March 21 · 3/21 · 21 March · today · yesterday"
+    />
+  ) : (
+    <List.EmptyView
+      icon={Icon.ExclamationMark}
       title="Unrecognized date format"
       description="Try: March 21, 3/21, 21 March, or 2024-03-21"
     />
   );
 
-  const formattedDate = date ? date.toLocaleDateString(undefined, { month: "short", day: "numeric" }) : undefined;
+  const formattedDate = date
+    ? date.toLocaleDateString(undefined, { month: "short", day: "numeric" })
+    : undefined;
+
   return (
     <List
       onSearchTextChange={setSearchText}
@@ -37,16 +45,15 @@ export default function Command() {
     >
       {zodiac ? (
         <List.Item
-          icon={zodiac.icon}
-          title={zodiac.name}
-          detail={<List.Item.Detail markdown={zodiac.description} />}
-          accessories={formattedDate ? [{ icon: Icon.Calendar, text: formattedDate }] : undefined}
-          actions={
-            <ActionPanel>
-              <Action.CopyToClipboard content={zodiac.name} />
-              <Action.CopyToClipboard content={zodiac.description} title="Copy Description" />
-            </ActionPanel>
-          }
+          icon={{ source: Icon.Stars, tintColor: elementColor(zodiac.element) }}
+          title={`${zodiac.symbol}  ${zodiac.name}`}
+          subtitle={formatDateRange(zodiac)}
+          accessories={[
+            { tag: { value: zodiac.element, color: elementColor(zodiac.element) } },
+            ...(formattedDate ? [{ icon: Icon.Calendar, text: formattedDate }] : []),
+          ]}
+          detail={<SignDetail sign={zodiac} />}
+          actions={<SignActions sign={zodiac} />}
         />
       ) : (
         emptyView
